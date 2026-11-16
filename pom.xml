@@ -5,17 +5,32 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.itfs.fintech</groupId>
-        <artifactId>fintech-platform-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/>
     </parent>
 
-    <artifactId>aml-compliance-service</artifactId>
-    <name>ITFS FinTech :: AML &amp; Regulatory Compliance Service</name>
-    <description>Dual XML/JSON Work Item Architecture, FIU-IND &amp; CBUAE Regulatory Pre-Validation Engine</description>
+    <groupId>com.itfs.fintech</groupId>
+    <artifactId>fintech-aml-surveillance-service</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>ITFS FinTech :: AML &amp; Regulatory Surveillance Service</name>
+    <description>Statutory AML Screening (FIU-IND, CBUAE goAML) and Dual XML/JSON Work Item Architecture</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <springdoc.version>2.5.0</springdoc.version>
+        <json-schema-validator.version>1.4.0</json-schema-validator.version>
+    </properties>
 
     <dependencies>
+        <!-- Shared Contracts & DTOs -->
+        <dependency>
+            <groupId>com.itfs.fintech</groupId>
+            <artifactId>fintech-contracts-grpc-dto</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -31,24 +46,32 @@
         <dependency>
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>1.4.0</version>
+            <version>${json-schema-validator.version}</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
-            <groupId>com.itfs.fintech</groupId>
-            <artifactId>common-dto</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.itfs.fintech</groupId>
-            <artifactId>common-observability</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
